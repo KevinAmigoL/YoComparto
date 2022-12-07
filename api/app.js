@@ -9,6 +9,7 @@ var app = express();
 var user_routes = require('./routes/user');
 var carrera_routes = require('./routes/carrera');
 var institucion_routes = require('./routes/institucion');
+var publication_routes = require('./routes/publication');
 var denuncia_routes = require('./routes/denuncia');
 
 //middlewares
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use('/api', user_routes);
 app.use('/api', carrera_routes);
 app.use('/api', institucion_routes);
+app.use('/api', publication_routes);
 app.use('/api', denuncia_routes);
 
 //exportar

@@ -6,10 +6,9 @@ var Schema = mongoose.Schema;
 var PublicationSchema = Schema({
 	name: String,
 	description: String,
-	create_at: String,
-	user: {tipe:Schema.ObjectId, ref:'User'},
-	institucion: {tipe:Schema.ObjectId, ref:'Institucion'},
-	carrera: {tipe:Schema.ObjectId, ref:'Carrera'},
+	user: String,
+	institucion: String,
+	carrera: String,
 	contenido: String,
 	ramo: String,
 	file: String
