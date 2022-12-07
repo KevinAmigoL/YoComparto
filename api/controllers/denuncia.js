@@ -45,6 +45,19 @@ denuncia.save((err, denunciaStored) => {
 
 
 
+//metodo consultar datos de usuario
+function getDenuncia(req, res) {
+	var denunciaId = req.params.id;
+
+	Denuncia.findById(denunciaId, (err, denuncia) => {
+
+
+	if(err) return res.status(500).send({message: 'Error en la peticion'});
+	if(!denuncia) return res.status(404).send({message: 'Usuario no encontrado'});
+	return res.status(200).send({denuncia});
+
+});
+}
 
 
 
@@ -54,5 +67,5 @@ denuncia.save((err, denunciaStored) => {
 module.exports = {
 home,
 saveDenuncia,
-
+getDenuncia
 }

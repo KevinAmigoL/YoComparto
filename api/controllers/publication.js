@@ -53,6 +53,20 @@ publication.save((err, publicationStored) => {
 
 
 
+//metodo consultar datos de usuario
+function getPublication(req, res) {
+	var publicationId = req.params.id;
+
+	Publication.findById(publicationId, (err, publication) => {
+
+
+	if(err) return res.status(500).send({message: 'Error en la peticion'});
+	if(!publication) return res.status(404).send({message: 'Usuario no encontrado'});
+	return res.status(200).send({publication});
+
+});
+}
+
 
 
 
@@ -62,5 +76,5 @@ publication.save((err, publicationStored) => {
 module.exports = {
 home,
 savePublication,
-
+getPublication
 }

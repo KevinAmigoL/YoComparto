@@ -45,6 +45,20 @@ carrera.save((err, carreraStored) => {
 }
 }
 
+//metodo consultar datos de usuario
+function getCarrera(req, res) {
+	var carreraId = req.params.id;
+
+	Carrera.findById(carreraId, (err, carrera) => {
+
+
+	if(err) return res.status(500).send({message: 'Error en la peticion'});
+	if(!carrera) return res.status(404).send({message: 'Usuario no encontrado'});
+	return res.status(200).send({carrera});
+
+});
+}
+
 
 
 
@@ -56,5 +70,5 @@ carrera.save((err, carreraStored) => {
 module.exports = {
 home,
 saveCarrera,
-
+getCarrera
 }
