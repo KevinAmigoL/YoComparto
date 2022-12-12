@@ -87,7 +87,6 @@ function updateInstitucion (req, res){
 
 //Funciones/metodos a exportar para utilizar en otros ficheros------------------------------------------------------------------------------
 module.exports = {
-home,
 saveInstitucion,
 getInstitucion,
 updateInstitucion

@@ -3,19 +3,6 @@
 var bCrypt = require('bcrypt-nodejs')
 var User = require('../models/user');
 
-function home(req, res)  {
-	res.status(200).send({
-		message: 'hola mundo desde servidor NodeJS interfaz usuarios'
-	});
-}
-
-
-function pruebas(req, res)  {
-	console.log(req.body);
-	res.status(200).send({
-		message: 'Accion de pruebas servidor NodeJS'
-	});
-}
 
 //funcion para guardar usuarios---------------------------------------------------------------
 function saveUser(req, res)  {
@@ -33,7 +20,7 @@ if (params.name && params.surname && params.nick &&
 	user.image = null;
 
 
-//Control de usuarios duplicados-------------------------------------------
+//Control de usuarios duplicados---------------------------------------------------------------------------------------------------------
 User.find ({ $or: [
 	{email: user.email.toLowerCase()},
 	{nick: user.nick.toLowerCase()}
@@ -43,10 +30,11 @@ User.find ({ $or: [
 		if(err) return res.status(500).send({message: 'Error en la peticion de usuarios'});
 		if (users && users.length >= 1) {
 		return res.status(200).send({message: 'Email y/o nick ya se encuentran registrados en sistema'});
-	
 	}else{
 
-		//Encriptado de contraseña y guardado de datos---------------------------------------------------------------
+
+
+//Encriptado de contraseña y guardado de datos----------------------------------------------------------------------------------------------
 bCrypt.hash(params.password, null, null,(err, hash)  => {
 user.password = hash;
 
@@ -62,7 +50,6 @@ user.save((err, userStored) => {
 });
 }
 });
-
 	}else{
 	res.status(200).send({
 		message:'rellena todos los campos nesesarios'
@@ -73,10 +60,7 @@ user.save((err, userStored) => {
 
 
 
-
-
-
-//Metodo de Control de accesos------------------------------------------------
+//Metodo de Control de accesos--------------------------------------------------------------------------------------------------------------
 function loginUser (req, res){
 
 var params = req.body;
@@ -103,7 +87,7 @@ if (user){
 }
 
 
-//metodo consultar datos de usuario
+//metodo consultar datos de usuario-----------------------------------------------------------------------------------------------------------
 function getUser(req, res) {
 	var userId = req.params.id;
 
@@ -118,7 +102,7 @@ function getUser(req, res) {
 }
 
 
-//metodo update datos usuario
+//metodo update datos usuario-------------------------------------------------------------------------------------------------------------------
 function updateUser (req, res){
 	var userId = req.params.id;
 	var update = req.body;
@@ -140,12 +124,8 @@ function updateUser (req, res){
 
 
 
-
-
-//Funciones/metodos a exportar para utilizar en otros ficheros------------------------------------------------------------------------------
+//Funciones/metodos a exportar para utilizar en otros ficheros-----------------------------------------------------------------------------------
 module.exports = {
-home,
-pruebas,
 saveUser,
 loginUser,
 getUser,

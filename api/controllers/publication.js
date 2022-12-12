@@ -2,16 +2,7 @@
 
 var Publication = require('../models/publication');
 
-function home(req, res)  {
-	res.status(200).send({
-		message: 'hola mundo desde servidor NodeJS interfaz usuarios'
-	});
-}
-
-
-
-
-//funcion para guardar usuarios---------------------------------------------------------------
+//funcion para guardar publicaciones-----------------------------------------------------------------------------------------------------------
 function savePublication(req, res)  {
 var params = req.body;
 var publication = new Publication();
@@ -28,9 +19,6 @@ if (params.name && params.description && params.user &&  params.institucion && p
 	publication.file = params.file;
 
 	
-	
-
-
 publication.save((err, publicationStored) => {
 	if(err) return res.status(500).send({message: 'La creación no ha podido realizarse por favor verifique los datos'});
 
@@ -39,21 +27,17 @@ publication.save((err, publicationStored) => {
 	}else{
 		res.status(404).send({message: 'La creación no ha podido realizarse por favor verifique los datos'});
 }
-
 });
-
-
 	}else{
 	res.status(200).send({
 		message:'La creación no ha podido realizarse por favor verifique los datos'
-
 	});
 }
 }
 
 
 
-//metodo consultar datos de usuario
+//metodo consultar datos de publicaciones--------------------------------------------------------------------------------------------------------------------
 function getPublication(req, res) {
 	var publicationId = req.params.id;
 
@@ -67,7 +51,7 @@ function getPublication(req, res) {
 });
 }
 
-//metodo update datos usuario
+//metodo update publicaciones---------------------------------------------------------------------------------------------------------------------------------
 function updatePublication (req, res){
 	var publicationId = req.params.id;
 	var update = req.body;
@@ -89,12 +73,9 @@ function updatePublication (req, res){
 
 
 
-
-
-//Funciones/metodos a exportar para utilizar en otros ficheros------------------------------------------------------------------------------
+//Funciones/metodos a exportar para utilizar en otros ficheros-------------------------------------------------------------------------------------------------
 module.exports = {
-home,
 savePublication,
 getPublication,
-updatePublication
+updatePublication 
 }

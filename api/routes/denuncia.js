@@ -5,8 +5,7 @@ var DenunciaController = require('../controllers/denuncia');
 
 var api = express.Router();
 
-//api.get();
-api.get('/home',DenunciaController.home);
+//rutas
 api.post('/registerdenuncia',DenunciaController.saveDenuncia);
 api.get('/denuncia/:id',  DenunciaController.getDenuncia);
 api.put('/updatedenuncia/:id',  DenunciaController.updateDenuncia);

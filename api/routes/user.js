@@ -5,9 +5,7 @@ var UserController = require('../controllers/user');
 
 var api = express.Router();
 
-//api.get();
-api.get('/home',UserController.home);
-api.get('/pruebas',UserController.pruebas);
+//rutas
 api.post('/register',UserController.saveUser);
 api.post('/login',UserController.loginUser);
 api.get('/user/:id',  UserController.getUser);
