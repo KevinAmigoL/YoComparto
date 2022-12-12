@@ -9,6 +9,6 @@ var api = express.Router();
 api.get('/homeinstitucion',InstitucionController.home);
 api.post('/registerinstitucion',InstitucionController.saveInstitucion);
 api.get('/institucion/:id',  InstitucionController.getInstitucion);
-
+api.put('/updateinstitucion/:id',  InstitucionController.updateInstitucion);
 
 module.exports = api;

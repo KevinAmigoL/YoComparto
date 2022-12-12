@@ -67,6 +67,25 @@ function getPublication(req, res) {
 });
 }
 
+//metodo update datos usuario
+function updatePublication (req, res){
+	var publicationId = req.params.id;
+	var update = req.body;
+
+	//borrar propiedad de password
+	//delete update.password;
+
+	//if(userId != req.user.sub){
+		//return res.status(500).send({ message:'no tienes permiso para actualizar datos de este usuario'});
+
+	//}
+
+	Publication.findByIdAndUpdate(publicationId, update, {new:true}, (err, publicationUpdated) => {
+		if (err) return res.status(500).send({message:'error en la peticion'});
+		if(!publicationUpdated) return res.status(404).send({message:'no se a podido actualizar el usuario'});
+		return res.status(200).send({publication:publicationUpdated});
+	});
+}
 
 
 
@@ -76,5 +95,6 @@ function getPublication(req, res) {
 module.exports = {
 home,
 savePublication,
-getPublication
+getPublication,
+updatePublication
 }

@@ -62,6 +62,25 @@ function getInstitucion(req, res) {
 
 
 
+//metodo update datos usuario
+function updateInstitucion (req, res){
+	var institucionId = req.params.id;
+	var update = req.body;
+
+	//borrar propiedad de password
+	//delete update.password;
+
+	//if(userId != req.user.sub){
+		//return res.status(500).send({ message:'no tienes permiso para actualizar datos de este usuario'});
+
+	//}
+
+	Institucion.findByIdAndUpdate(institucionId, update, {new:true}, (err, institucionUpdated) => {
+		if (err) return res.status(500).send({message:'error en la peticion'});
+		if(!institucionUpdated) return res.status(404).send({message:'no se a podido actualizar el usuario'});
+		return res.status(200).send({institucion:institucionUpdated});
+	});
+}
 
 
 
@@ -70,7 +89,8 @@ function getInstitucion(req, res) {
 module.exports = {
 home,
 saveInstitucion,
-getInstitucion
+getInstitucion,
+updateInstitucion
 }
 
 

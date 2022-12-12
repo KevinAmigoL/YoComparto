@@ -59,6 +59,25 @@ function getCarrera(req, res) {
 });
 }
 
+//metodo update datos usuario
+function updateCarrera (req, res){
+	var carreraId = req.params.id;
+	var update = req.body;
+
+	//borrar propiedad de password
+	//delete update.password;
+
+	//if(userId != req.user.sub){
+		//return res.status(500).send({ message:'no tienes permiso para actualizar datos de este usuario'});
+
+	//}
+
+	Carrera.findByIdAndUpdate(carreraId, update, {new:true}, (err, carreraUpdated) => {
+		if (err) return res.status(500).send({message:'error en la peticion'});
+		if(!carreraUpdated) return res.status(404).send({message:'no se a podido actualizar el usuario'});
+		return res.status(200).send({carrera:carreraUpdated});
+	});
+}
 
 
 
@@ -70,5 +89,6 @@ function getCarrera(req, res) {
 module.exports = {
 home,
 saveCarrera,
-getCarrera
+getCarrera,
+updateCarrera
 }

@@ -9,6 +9,6 @@ var api = express.Router();
 api.get('/homepublication',PublicationController.home);
 api.post('/registerpublication',PublicationController.savePublication);
 api.get('/publication/:id',  PublicationController.getPublication);
-
+api.put('/updatepublication/:id',  PublicationController.updatePublication);
 
 module.exports = api;
